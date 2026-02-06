@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyek Kelulusan 2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --yellow: #FFF;
+            --bg-gradient: linear-gradient(135deg, #008080 20%, #008080 100%);
+            --glass: rgba(255, 255, 255, 0.1);
+        }
+   footer{ 
+      margin: 10;
+      padding: 10;
+      background;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px;
+    }
+
+    footer {
+      color: #f0ffff;
+      text-align: center;
+    }
+        /* FONT & DASAR */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; padding: 0; 
+            font-family: "Times New Roman", Times, serif; 
+        }
+
+        body {
+            background: var(--bg-gradient); 
+            color: white;
+            min-height: 10vh;
+            padding-bottom: 100px;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGASI BAWAH */
+        .bottom-nav {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 500px;
+            background: green(15, 23, 42, 0.8);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px;
+            border-radius: 20px;
+            border: 1px solid cyan;
+            z-index: 1000;
+        }
+
+        .bottom-nav a {
+            color: cyan;
+            text-decoration: none;
+            text-align: center;
+            flex: 1;
+        }
+
+        .bottom-nav a.active { color: var(--yellow); }
+        .bottom-nav i { font-size: 1.2em; display: block; margin-bottom: 3px; }
+        .bottom-nav span { font-size: 0.7em; text-transform: uppercase; }
+
+        /* KONTENER HALAMAN */
+        .container { padding: 20px; width: 100%; max-width: 600px; margin: auto; }
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .page.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* DAFTAR SISWA - HARUS KE BAWAH */
+        #siswa-list {
+            display: flex;
+            flex-direction: column; /* MEMAKSA SISWA URUT KE BAWAH */
+            gap: 15px;
+            width: 100%;
+        }
+
+        .student-card {
+            background: var(--glass);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 5px solid var(--yellow);
+            display: flex; /* FOTO DAN TEKS SEJAJAR KIRI-KANAN */
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .profile-img {
+            width: 70px; height: 90px;
+            background: #334155;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0; /* AGAR FOTO TIDAK GEPENG */
+        }
+
+        .info { flex-grow: 1; }
+        .info h3 { font-size: 1.2em; color: var(--yellow); margin-bottom: 5px; }
+        .info p { font-size: 0.9em; margin-bottom: 2px; line-height: 1.2; }
+
+        .social-btns { margin-top: 8px; display: flex; gap: 10px; }
+        .social-btns a {
+            text-decoration: none; color: var(--yellow);
+            font-size: 0.8em; padding: 4px 8px;
+            border: 1px solid var(--yellow); border-radius: 4px;
+        }
+
+        /* WAKTU MUNDUR */
+        .timer-container { text-align: center; padding-top: 50px; }
+        .circle {
+            width: 220px; height: 220px;
+            border: 3px solid var(--yellow);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            box-shadow: 0 0 15px red;
+        }
+        #timer-val { font-size: 1.4em; font-weight: bold; color: var(--yellow); }
+
+        /* LOGIN */
+        .login-box {
+            background: var(--glass); padding: 25px;
+            border-radius: 15px; margin-top: 50px;
+        }
+        .login-box input {
+            width: 100%; padding: 12px; margin-bottom: 15px;
+            border-radius: 8px; border: none; outline: none;
+        }
+        .login-box button {
+            width: 100%; padding: 12px; background: var(--yellow);
+            border: none; border-radius: 8px; font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="home" class="page active">
+            <h1 style="text-align:center; margin-top:1px; font-size: 1.5em;">ARCHIVE XII TKJ 2</h1>
+            <p style="text-align:center; color: var(--yellow); margin-top: 10px;">PROYEK KELULUSAN 2026</p>
+        </div>
+
+        <div id="siswa" class="page">
+            <h2 style="text-align:center; margin-bottom:20px;">DAFTAR SISWA</h2>
+            <div id="siswa-list">
+                
+                <div class="student-card">
+                    <img src="A1.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Abigael Arthur Caesar Kountul</h3>
+                        <p><b>Tujuan:</b> Universitas Brawijaya</p>
+                        <p><b>Bio:</b> Uang adalah aku.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/abigael_arthur?igsh=MWY3aTBoZThic3J1MQ==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/628175736627" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="student-card">
+                    <img src="A2.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Achmad Azhari
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/ach.azhrii?igsh=YmV5czYwNGQybTdx target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/62 85695199095" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                                <div class="student-card">
+                    <img src="a3.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Adi Putra Prasetyo
+                        </h3>
+                        <p><b>Tujuan:</b> Pengusaha</p>
+                        <p><b>Bio:</b> Berusaha lebih baik.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/adiputra.012?igsh=MTBqZThiejZyNWw0Zg==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6287887908974" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                                <div class="student-card">
+                    <img src="a4.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Afdhal Ridho Abdillah
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/afdlrdh_" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6285156261930" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                        <div class="student-card">
+                    <img src="a5.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Ahmad Putra Sahrulloh
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/putra.aaaaaaaaaaaaaaaaa?igsh=MTFmeTR5dTg3OW50aQ==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/62887654321" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                         <div class="student-card">
+                    <img src="a6.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Axl Cornelius Tampi
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/axltampi" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6281393908943" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                        <div class="student-card">
+                    <img src="a7.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Bima Dewa Prayoga
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/bimmaaaa__" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+62 889-7566-9995" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                           <div class="student-card">
+                    <img src="a8.jpg" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Calvin Heksa Candra
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/iamcalvintheman" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6281315154858" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A9.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Chiko Aby Fabyansyah
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/vabyansah" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+628567436274" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A10.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Daffa Naufaliyanto
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/daffanvaaa?igsh=d3k1emZrbXRoM3ky" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6285133902756" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A11.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Dhika Pration
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/dekotttttt_" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289666245898" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A12.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Difa Abdullah
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/abdullah_difa" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/62887654321" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A13.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Eza Gusti Satriani
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/ejaagsti" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289630563045" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A14.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Fabio Edwin Buyung
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/_____biooo17" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6289512165526" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A15.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Herlambang Bamakerti Arrasyid
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/bamaa_mz" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289603718563" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A16.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Hilmy Ahmad Setiawan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/setiaawest" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6281586533692" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A17.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Louis Soesanto
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/louis.is_" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+62895328193355" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A18.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Fadli
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/dl.iiiiii" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+628881584868" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A19.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Rasya
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/ras.rasya__" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288289128184" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A20.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Angga Ardiansyah
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/nggadiansyah_?igsh=MWFwbTVlaTJyZmRsbA==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288211541138" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A21.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Fajar Rizky
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/kaksjarr" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6289629729775" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A22.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Fardhan Firdaus
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/bubadibac0" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289652516220" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A23.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Farhan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/fincfck" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6285782845071" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A24.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Rizky
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/mhmmdriz07?igsh=MW0zbmtscnV4ang2cA==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288975117825" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A25.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Muhammad Rizky Ramadhan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/peruereskie" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6285217497415" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A26.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Pito Setiawan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/pito47414" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6285695067829" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A27.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Qiean Oudri Guntara
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/ulrzitzogzgxhtisy" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6281293069179" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A28.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Raffa Ramadhan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/rapardnn_" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288905786435" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A29.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Rakha Rupadi
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/sfoc69" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289527934767" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A30.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Randu Wijaya
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://instagram.com/ranndssskaaa" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288211541138" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A31.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Rangga Dwi Farel
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/rajuu__16?igsh=bWFtYnh5NnMwempl" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/6281292087215" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A32.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Rhadya Aora Raja
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/jakatarub25_?igsh=NW40MGlseGtteWQ4" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6285695614524" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A33.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Ridwan
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/ridwan.2512?igsh=MTc5MmpqbXpjdWpuNw==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6281384827762" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A34.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Sheno Adiprasetyo
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/amadoyanugget?igsh=MWYyMHJxa2NtaG42Yw==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6285966795532" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A35.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Valdi Pratama William Sibbald
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/wiliamsibbalddd?igsh=eXlkcjRwanByenA5" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6288289438443" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A36.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Yudi Pramono
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/marselianoyudii_12___?igsh=bm8ybjBsOWtnNXhu" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+6289504491546" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+                  <div class="student-card">
+                    <img src="A37.JPG" alt="Foto" class="profile-img">
+                    <div class="info">
+                        <h3>Yusuf Nuralim
+                        </h3>
+                        <p><b>Tujuan:</b> Kerja / Usaha</p>
+                        <p><b>Bio:</b> Sukses masa depan.</p>
+                        <div class="social-btns">
+                            <a href="https://www.instagram.com/suf_suff20?igsh=MTM2M2c4Ym9uejgzZw==" target="_blank"><i class="fab fa-instagram"></i> </a>
+                            <a href="https://wa.me/+62895320962986" target="_blank"><i class="fab fa-whatsapp"></i> </a>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+
+        <div id="waktu" class="page">
+            <div class="timer-container">
+                <h2>HITUNG MUNDUR</h2>
+                <div class="circle">
+                    <i class="fas fa-graduation-cap fa-2x" style="color:var(--yellow); margin-bottom:10px;"></i>
+                    <div id="timer-val">00:00:00</div>
+                </div>
+                <p>Menuju 15 Mei 2026</p>
+            </div>
+        </div>
+
+        <div id="login" class="page">
+           
+            <div class="login-box">
+ 
+                 <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Masuk ke Akun</h2>
+
+  <form id="loginForm">
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault(); // mencegah reload
+
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    if (user === "Daffa" && pass === "1234") {
+      alert("Login Berhasil");
+      // redirect ke halaman lain
+      // window.location.href = "home.html";
+    } else {
+      alert("Username atau Password salah!");
+    }
+  });
+</script>
+
+        </form>
+    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="active" onclick="navTo('home', this)"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="#" onclick="navTo('siswa', this)"><i class="fas fa-users"></i><span>Siswa</span></a>
+        <a href="#" onclick="navTo('waktu', this)"><i class="fas fa-clock"></i><span>Waktu</span></a>
+        <a href="#" onclick="navTo('login', this)"><i class="fas fa-lock"></i><span>Login</span></a>
+    </div>
+
+    <script>
+        function navTo(page, el) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(page).classList.add('active');
+            document.querySelectorAll('.bottom-nav a').forEach(a => a.classList.remove('active'));
+            el.classList.add('active');
+            window.scrollTo(0,0);
+        }
+
+        const target = new Date("May 15, 2026 15:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const d = target - now;
+            const days = Math.floor(d / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((d % (1000 * 60)) / 1000);
+            document.getElementById("timer-val").innerHTML = `${days} hari, ${hours}:${mins}:${secs}`;
+        }, 1000);
+    </script>
+</body>
+<footer>
+<p>©DAFFA NAUFALIYANTO</p>
+</footer>
+</html>
